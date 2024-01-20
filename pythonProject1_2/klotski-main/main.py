@@ -193,19 +193,19 @@ def has_answer(board):
                 continue
             if board[i] > board[j]:
                 count = count + 1
-    if (count % 2 == 1):
+    if count % 2 == 1:
         return 0
     return 1
 
 
 def random_first_list():
-    list = [i for i in range(1, 10)]
+    list1 = [i for i in range(1, 10)]
     x = random.randint(0, 8)
-    list[x] = 0
-    random.shuffle(list)
-    while (not has_answer(list)):
-        random.shuffle(list)
-    return list
+    list1[x] = 0
+    random.shuffle(list1)
+    while not has_answer(list1):
+        random.shuffle(list1)
+    return list1
 
 
 def goBackDistance(num):
@@ -300,16 +300,16 @@ def last_step(logic):
 def init_game():
     pygame.init()
     os.environ['SDL_VIDEO_CENTERED'] = '1'
-    screen = pygame.display.set_mode((screen_width, screen_height))
+    screen1 = pygame.display.set_mode((screen_width, screen_height))
     pygame.display.set_caption("欢迎来玩图片华容道")
-    return screen
+    return screen1
 
 
-def load_img(logic, screen, path_org, path_icon):
+def load_img(logic, screen1, path_org, path_icon):
     # path_org是原图分块所在路径
     # path_reset是按钮图片所在的路径
     surface = pygame.image.load(r'./img/beijing2.png')
-    screen.blit(surface, (0, 0))
+    screen1.blit(surface, (0, 0))
 
     selected_img = logic.selected_img
 
@@ -323,27 +323,27 @@ def load_img(logic, screen, path_org, path_icon):
                 img = pygame.image.load(r'./pic/0.jpg')
             else:
                 img = pygame.image.load(path_org + r'/%s_%d.jpg' % (selected_img, num))
-            screen.blit(img, (x, y))
+            screen1.blit(img, (x, y))
 
     # img_org = pygame.image.load(r'.\picc\%s.jpg'%logic.c)
     img_org = pygame.image.load(r'./picc/%s.jpg' % selected_img)
     # 载入原图
-    screen.blit(img_org, (org_x, org_y))
+    screen1.blit(img_org, (org_x, org_y))
     reset_button = pygame.image.load(path_icon + r'/restart.png')
     # 载入按钮
-    screen.blit(reset_button, (button1_x, button1_y))
+    screen1.blit(reset_button, (button1_x, button1_y))
     ret_button = pygame.image.load(path_icon + r'/start2.png')
 
-    screen.blit(ret_button, (button3_x, button3_y))
+    screen1.blit(ret_button, (button3_x, button3_y))
     right_button = pygame.image.load(path_icon + r'/right.png')
 
-    screen.blit(right_button, (button4_x, button4_y))
+    screen1.blit(right_button, (button4_x, button4_y))
     left_button = pygame.image.load(path_icon + r'/left.png')
 
-    screen.blit(left_button, (button5_x, button5_y))
+    screen1.blit(left_button, (button5_x, button5_y))
     start_button = pygame.image.load(path_icon + r'/start.png')
 
-    screen.blit(start_button, (button2_x, button2_y))
+    screen1.blit(start_button, (button2_x, button2_y))
 
 
 def press(is_game_over, logic, screen, clock, count, counts):
@@ -380,8 +380,6 @@ def press(is_game_over, logic, screen, clock, count, counts):
                     if cv2.waitKey(1) == ord('q'):
                         stop_hand_key.set()
                         gesture_thread.join()
-
-
 
                 elif button3_x < x < button3_x + button_size and button3_y < y < button3_y + button_size:
                     gesture_thread = threading.Thread(target=hand_click)
@@ -459,12 +457,11 @@ if __name__ == '__main__':
             8.按下enter键重新开始
         """)
         screen = init_game()
+        # 跟踪时间，控制游戏循环频率）
         clock = pygame.time.Clock()
-        # 创建一个对象来跟踪时间（可以控制游戏循环频率）
         logic = Logic(Shape)
-        # 创建游戏规则
-        count = pygame.USEREVENT + 1
         # count为人为设定的用户事件
+        count = pygame.USEREVENT + 1
         pygame.time.set_timer(count, 1000)
         seconds = 0
         game_start_surface(screen, logic, clock)
@@ -473,7 +470,5 @@ if __name__ == '__main__':
             seconds = press(False, logic, screen, clock, count, seconds)
             # 初始化计时数据，监控程序
             load_img(logic, screen, path_org=r"./pic", path_icon=r"./icon")
-            # 加载图片
             pygame.display.update()
-            # 更新画布
             clock.tick(FPS)
