@@ -7,13 +7,8 @@
 
     pip install -r requirements.txt
 
-编译方法
+编译运行方法
 
     安装完依赖requirement.txt后直接运行图片华容道中的main.py
-    main.py 整个游戏项目
-    
-使用方法
+    main.py 运行整个游戏项目
 
-    也可以直接执行run文件夹中的main.exe文件
-    main.exe
-    但是要将main.exe文件与其他main文件放在同一目录下

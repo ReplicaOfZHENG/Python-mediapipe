@@ -399,17 +399,17 @@ def press(is_game_over, logic, screen, clock, count, counts):
 
         if event.type == pygame.KEYUP:
             # 松开键盘事件
-            # wasd和上下左右分别对应上下左右移动
-            if event.key == pygame.K_w or event.key == pygame.K_UP:
+            # 上下左右分别对应上下左右移动
+            if event.key == pygame.K_UP:
                 direction = (-1, 0)
                 logic.key_move(direction=direction)
-            elif event.key == pygame.K_a or event.key == pygame.K_LEFT:
+            elif event.key == pygame.K_LEFT:
                 direction = (0, -1)
                 logic.key_move(direction=direction)
-            elif event.key == pygame.K_s or event.key == pygame.K_DOWN:
+            elif event.key == pygame.K_DOWN:
                 direction = (1, 0)
                 logic.key_move(direction=direction)
-            elif event.key == pygame.K_d or event.key == pygame.K_RIGHT:
+            elif event.key == pygame.K_RIGHT:
                 direction = (0, 1)
                 logic.key_move(direction=direction)
             elif event.key == 13:
@@ -453,7 +453,7 @@ if __name__ == '__main__':
               食指和大拇指完全合并，双击
             5.点击向左按钮返回上一步
             6.点击向右按钮自动点击一步
-            7.按下wasd和上下左右分别对应上下左右移动
+            7.按下上下左右分别对应上下左右移动
             8.按下enter键重新开始
         """)
         screen = init_game()
