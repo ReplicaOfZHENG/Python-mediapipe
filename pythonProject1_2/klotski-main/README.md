@@ -1,8 +1,7 @@
-AI大比拼项目：https://github.com/Leo-Rosemary/klotski
-图片华容道
+基于mediapipe的图片华容道小游戏
 
 
-    操作系统：Windows
+    操作系统：Windows/MacOS
     Python版本:3.7以上
     依赖参照requirements.txt
 
